@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* small custom helpers */
+.input {
+  @apply w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white;
+}
+.btn-primary {
+  @apply bg-sky-600 hover:bg-sky-700 text-white rounded-md px-4 py-2 text-sm;
+}

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "doj_intro",
+    "title": "Department of Justice Overview",
+    "content": "The Department of Justice (DOJ) is part of the Ministry of Law and Justice, Government of India. It manages judiciary operations including court infrastructure development, implementing e-Courts Project for digitization, establishing fast-track courts for sensitive cases like rape and POCSO, providing legal aid to underprivileged citizens, and training judicial officers across India.",
+    "category": "general",
+    "tags": ["DOJ", "overview", "functions"]
+  },
+  {
+    "id": "doj_divisions",
+    "title": "DOJ Divisions and Structure",
+    "content": "The Department of Justice has several divisions: Justice Division I handles appointments and transfers of High Court and District Court judges. Justice Division II manages infrastructure development and construction of court buildings. Justice Division III oversees the e-Courts Project and digital initiatives. Justice Division IV handles legal aid schemes and free legal services. Justice Division V manages judicial training and capacity building programs.",
+    "category": "structure",
+    "tags": ["divisions", "organization", "structure"]
+  },
+  {
+    "id": "judges_vacancies",
+    "title": "Judicial Vacancies Information",
+    "content": "Information about judges and vacancies is available through the National Judicial Data Grid (NJDG). As of recent data, India has a sanctioned strength of approximately 1,108 judges in High Courts and over 24,000 judges in subordinate courts. Vacancies exist across various levels. Current vacancy data can be accessed at njdg.ecourts.gov.in which provides real-time statistics on judge strength, vacancies, and court workload.",
+    "category": "judiciary",
+    "tags": ["judges", "vacancies", "NJDG", "statistics"]
+  },
+  {
+    "id": "njdg_overview",
+    "title": "National Judicial Data Grid (NJDG)",
+    "content": "The National Judicial Data Grid (NJDG) is a national repository of data relating to cases pending and disposed in District and Taluka courts across India. It provides real-time information on: pending cases categorized by year and case type, disposed cases with disposal rates, court-wise and judge-wise statistics, institution and disposal trends, and case age analysis. Access NJDG at njdg.ecourts.gov.in to check case pendency, track case status, and view judicial statistics.",
+    "category": "ecourts",
+    "tags": ["NJDG", "case pendency", "statistics", "data"]
+  },
+  {
+    "id": "efiling_intro",
+    "title": "E-Filing Introduction",
+    "content": "E-Filing is the online system for filing cases in High Courts and District Courts of India. Benefits include: filing cases from anywhere without visiting court, 24/7 availability, instant acknowledgment, tracking case status online, reduced paper usage, and faster processing. The e-filing portal is accessible at efiling.ecourts.gov.in. Users must register as advocates or litigants before filing cases.",
+    "category": "ecourts",
+    "tags": ["e-filing", "online", "digital", "filing"]
+  },
+  {
+    "id": "efiling_registration",
+    "title": "E-Filing Registration Process",
+    "content": "To register for e-filing: Visit efiling.ecourts.gov.in, click on 'Register' option, select user type (Advocate/Party-in-Person), fill personal details (name, email, mobile number), provide Bar Council enrollment details for advocates, create username and password, verify email and mobile through OTP, upload required documents (Bar Council ID, Aadhar), and submit for approval. Once approved, you can login and start e-filing cases.",
+    "category": "ecourts",
+    "tags": ["e-filing", "registration", "signup", "advocate"]
+  },
+  {
+    "id": "efiling_steps",
+    "title": "Steps for E-Filing a Case",
+    "content": "E-Filing process steps: Step 1 - Login to efiling.ecourts.gov.in with credentials. Step 2 - Select state and court from dropdown. Step 3 - Click 'New Case' option in dashboard. Step 4 - Choose case type (Civil/Criminal). Step 5 - Fill petitioner/complainant details. Step 6 - Fill respondent/accused details. Step 7 - Enter case details and grounds. Step 8 - Upload scanned documents (vakalatnama, affidavits, annexures). Step 9 - Calculate and pay court fees online. Step 10 - Review all details. Step 11 - Submit for scrutiny. Step 12 - Download acknowledgment receipt. Track case status in dashboard under 'My E-filed Cases'.",
+    "category": "ecourts",
+    "tags": ["e-filing", "steps", "process", "how to file"]
+  },
+  {
+    "id": "court_fees_payment",
+    "title": "Court Fees Payment Online",
+    "content": "Court fees can be paid online through the e-filing portal using: Debit Card, Credit Card, Net Banking, or UPI. Process: After filling case details, the system automatically calculates court fees based on case type and valuation. Select payment mode, enter payment details, complete transaction, and save payment receipt. The receipt is automatically attached to your case filing. For deficit fees, you can pay additional amounts from the dashboard under 'Deficit Court Fee' section.",
+    "category": "ecourts",
+    "tags": ["court fees", "payment", "online payment"]
+  },
+  {
+    "id": "traffic_fines",
+    "title": "Traffic Challan Payment",
+    "content": "Traffic challans/fines can be paid online through: Visit ecourts.gov.in/ecourts_home/. Click on 'Services' and select 'Pay Traffic Challan'. Enter vehicle number or challan number. View challan details (fine amount, violation, date). Select payment method (Debit/Credit Card, Net Banking, UPI). Complete payment. Download payment receipt. Alternatively, use Parivahan website or mobile apps. Payment confirmation is sent via SMS and email.",
+    "category": "services",
+    "tags": ["traffic", "challan", "fine", "payment"]
+  },
+  {
+    "id": "case_status",
+    "title": "Check Case Status Online",
+    "content": "To check case status online: Visit services.ecourts.gov.in/ecourtindia_v6/. Select 'Case Status' option. Choose search method: by CNR Number, Case Number, Party Name, Filing Number, or FIR Number. Enter required details and captcha. Click 'Go' to view case status. Details shown include: case number, filing date, next hearing date, case stage, orders/judgments, cause list, and daily orders. For real-time updates, enable SMS/email alerts in the portal.",
+    "category": "services",
+    "tags": ["case status", "track case", "CNR", "hearing date"]
+  },
+  {
+    "id": "virtual_courts",
+    "title": "Virtual Courts and Online Hearings",
+    "content": "Virtual Courts allow online case hearings and disposal without physical presence. Features: E-filing of cases, online evidence submission, virtual court hearings via video conferencing, online case tracking, digital orders and judgments. Currently operational for traffic challans and certain case types. Access at virtualcourts.ecourts.gov.in. Benefits include time saving, cost reduction, faster disposal, and accessibility from anywhere. More case types being added to virtual courts progressively.",
+    "category": "ecourts",
+    "tags": ["virtual court", "online hearing", "video conference"]
+  },
+  {
+    "id": "fast_track_courts",
+    "title": "Fast Track Special Courts (FTSC)",
+    "content": "Fast Track Special Courts are established for speedy trial of sensitive cases including: rape cases under IPC and POCSO Act, cases of sexual offenses against women and children. Features: Dedicated judges for FTSC cases, time-bound disposal (usually 2 months from filing charge sheet), priority hearing, in-camera proceedings for victim protection, and special procedures for victim-friendly environment. As of recent data, over 700 FTSCs are operational across India. These courts aim to reduce pendency and ensure quick justice in heinous crimes.",
+    "category": "courts",
+    "tags": ["fast track", "FTSC", "POCSO", "rape cases", "special courts"]
+  },
+  {
+    "id": "ecourts_services",
+    "title": "E-Courts Services Overview",
+    "content": "E-Courts Project provides multiple digital services: Case Information System (CIS) for case details, e-Filing for online case filing, National Judicial Data Grid (NJDG) for statistics, Virtual Courts for online hearings, e-Payment for court fees, e-Summoning for digital summons, Mobile apps for case tracking, SMS/Email alerts for hearing dates, QR code-based case information, and Video Conferencing for remote hearings. All services accessible through ecourts.gov.in portal. The project aims to make justice accessible, affordable, and expeditious through technology.",
+    "category": "ecourts",
+    "tags": ["e-courts", "services", "digital", "online"]
+  },
+  {
+    "id": "telelaw_services",
+    "title": "Tele-Law Services",
+    "content": "Tele-Law provides free legal advice through video conferencing. Services include: Free legal consultation via video call, available at Common Service Centers (CSCs), advice on civil, criminal, and revenue matters, pre-litigation counseling, guidance on legal procedures, document drafting assistance. To access: Visit nearest CSC, request Tele-Law service, connect with panel lawyer via video call, discuss legal issue, receive free advice and guidance. Service available in multiple regional languages. Part of legal aid initiative for underprivileged citizens.",
+    "category": "services",
+    "tags": ["tele-law", "legal aid", "free advice", "consultation"]
+  },
+  {
+    "id": "legal_aid",
+    "title": "Legal Aid and Free Legal Services",
+    "content": "National Legal Services Authority (NALSA) provides free legal services to eligible citizens including: women, children, SC/ST communities, persons with disabilities, victims of trafficking, industrial workers, persons in custody, and persons with annual income below specified limit. Services include: free legal advice, legal representation in courts, free documentation, legal awareness programs, Lok Adalats for dispute resolution, and legal aid camps. Contact State Legal Services Authority or District Legal Services Authority for assistance. Apply through NALSA portal or visit Taluk Legal Services Committee.",
+    "category": "services",
+    "tags": ["legal aid", "free legal services", "NALSA", "legal assistance"]
+  },
+  {
+    "id": "cause_list",
+    "title": "Daily Cause List and Court Calendar",
+    "content": "Daily Cause List shows cases scheduled for hearing. To access: Visit district court website or services.ecourts.gov.in, select state and district, click 'Display Board' or 'Cause List', select date and court number, view list of cases with serial numbers and hearing times. Cause list is updated daily before court hours. Advocates and litigants can check their case hearing schedule online. SMS alerts are also sent to registered mobile numbers. Download mobile app for push notifications on hearing dates.",
+    "category": "services",
+    "tags": ["cause list", "hearing", "court calendar", "schedule"]
+  },
+  {
+    "id": "court_orders",
+    "title": "Access Court Orders and Judgments",
+    "content": "Court orders and judgments can be accessed online: Visit judgments portal at main.sci.gov.in for Supreme Court, or respective High Court websites for High Court judgments. For district court orders: Visit services.ecourts.gov.in, search case by CNR or case number, view 'Orders/Judgments' section. Orders are uploaded within 2-3 days of pronouncement. Download PDF copies for reference. Some courts provide certified copies through e-portal. For older judgments, visit SCI/Manupatra/Indian Kanoon databases.",
+    "category": "services",
+    "tags": ["orders", "judgments", "download", "case orders"]
+  },
+  {
+    "id": "advocate_services",
+    "title": "Services for Advocates",
+    "content": "Special services for registered advocates: E-Filing portal access for online case filing, daily cause list and board display, SMS alerts for case hearings, access to case records and orders, e-Payment of court fees, vakalatnama filing online, certified copies online, video conferencing for remote hearings, access to digital library and case laws. Register at efiling portal using Bar Council enrollment number. Attend training programs organized by DOJ and High Courts for digital court procedures.",
+    "category": "services",
+    "tags": ["advocate", "lawyer", "legal professional", "services"]
+  },
+  {
+    "id": "mobile_apps",
+    "title": "E-Courts Mobile Applications",
+    "content": "Official mobile apps for court services: eCourts Services App (Android/iOS) for case status tracking, hearing dates, cause list, court orders. National Judicial Data Grid (NJDG) App for statistics and pendency data. Features include: search by CNR, case number, or party name, QR code scanning for instant case info, SMS/Email alert subscription, court locator with directions, display board for daily hearings. Download from Google Play Store or Apple App Store. Free and no registration required for case search.",
+    "category": "ecourts",
+    "tags": ["mobile app", "android", "ios", "application"]
+  },
+  {
+    "id": "documents_required",
+    "title": "Documents Required for E-Filing",
+    "content": "Documents needed for e-filing cases: Vakalatnama (power of attorney) - signed and notarized, Affidavit supporting the petition - on stamp paper, Main petition/plaint/complaint - properly drafted, List of parties with complete addresses, Annexures and supporting documents - numbered and indexed, Court fee stamp or e-payment receipt, Certified copies of relevant documents, Identity proof of parties, Address proof of parties. All documents must be: scanned in PDF format, clear and readable, size less than 5MB per file, properly named and indexed. Keep physical copies for court submission if required.",
+    "category": "ecourts",
+    "tags": ["documents", "e-filing", "requirements", "petition"]
+  }
+]
