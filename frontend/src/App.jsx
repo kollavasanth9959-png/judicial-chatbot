@@ -4,6 +4,7 @@ import AuthPage from './components/Auth/AuthPage';
 import Topbar from './components/Chat/Topbar';
 import Sidebar from './components/Chat/Sidebar';
 import ChatArea from './components/Chat/ChatArea';
+import LandingPage from './components/Landing/LandingPage';
 import { api } from './api/api';
 
 /**
@@ -54,13 +55,17 @@ function AppInner() {
     setActiveSessionId(null);
   }
 
-  if (!token) return <AuthPage />;
+  const [showAuth, setShowAuth] = useState(false);
+
+  if (!token) {
+    return showAuth ? <AuthPage /> : <LandingPage onLogin={() => setShowAuth(true)} />;
+  }
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-200 flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-7xl bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden border border-white/50 flex flex-col h-[90vh]">
         <Topbar onLogout={logout} />
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
           <Sidebar
             sessions={sessions}
             activeSessionId={activeSessionId}
@@ -68,7 +73,7 @@ function AppInner() {
             onCreateNew={handleCreateNew}
             onDelete={handleDelete}
           />
-          <div className="flex-1">
+          <div className="flex-1 flex flex-col relative z-0 min-h-0 overflow-hidden">
             <ChatArea sessionId={activeSessionId} setSessionId={setActiveSessionId} token={token} />
           </div>
         </div>
