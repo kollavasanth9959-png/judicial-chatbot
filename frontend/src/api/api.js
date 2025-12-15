@@ -50,4 +50,26 @@ export const api = {
   // NEW: Update user role (PATCH). Backend must support this route.
   // Body: { role: 'standard'|'premium'|... }
   updateUserRole: (newRole, token, opts = {}) => request('/user/role', { method: 'PATCH', token, body: { role: newRole }, ...opts }),
+
+  // NEW: Transcribe audio using separate STT microservice (default port 8000)
+  transcribe: async (audioBlob, token) => {
+    const formData = new FormData();
+    formData.append('file', audioBlob, 'recording.webm');
+
+    // Note: Fetching directly to 8000 because it's a separate service
+    // In production, you might route this through Nginx or the main backend
+    const res = await fetch('http://localhost:8000/api/transcribe', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: formData
+    });
+
+    if (!res.ok) {
+      throw new Error(`Transcription failed: ${res.statusText}`);
+    }
+
+    return await res.json();
+  }
 };
