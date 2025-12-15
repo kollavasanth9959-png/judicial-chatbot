@@ -1,10 +1,8 @@
 // backend/src/services/ragService.js
-// Improved RAG service: async IO, safe tag handling, tokenization, snippet extraction.
-// Returns numeric relevance (0..100) to avoid Mongoose number casting errors.
-
 const fs = require('fs');
 const path = require('path');
 const { promisify } = require('util');
+const axios = require('axios');
 
 const readFile = promisify(fs.readFile);
 
@@ -14,9 +12,7 @@ class RAGService {
       kbPath: path.join(__dirname, '../../knowledge-base.json'),
       topK: 3,
       minSimilarity: 0.15,
-      highConfidenceThreshold: 0.4,
       watchFile: false,
-      snippetMaxChars: 600,
       ...options,
     };
 
@@ -122,101 +118,95 @@ class RAGService {
     return results.slice(0, topK);
   }
 
-  extractSnippet(query, document) {
-    const maxChars = this.options.snippetMaxChars;
-    const content = document.content || '';
-    const qTokens = this.tokenize(query);
+  async queryHuggingFace(prompt) {
+    const token = process.env.HF_API_TOKEN;
+    const modelUrl = process.env.HF_MODEL_URL || 'https://api-inference.huggingface.co/models/google/flan-t5-large';
 
-    if (qTokens.length === 0 || !content) {
-      return content.slice(0, maxChars) + (content.length > maxChars ? '…' : '');
+    if (!token) {
+      console.warn('⚠️ HF_API_TOKEN not found. Returning fallback response.');
+      return null;
     }
 
-    const lower = content.toLowerCase();
-    let bestPos = -1;
-    for (const token of qTokens) {
-      const pos = lower.indexOf(token);
-      if (pos >= 0 && (bestPos === -1 || pos < bestPos)) {
-        bestPos = pos;
+    try {
+      console.log('🌐 Calling Hugging Face API...');
+      const response = await axios.post(
+        modelUrl,
+        { inputs: prompt },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          timeout: 10000 // 10s timeout
+        }
+      );
+
+      // HF generic response is usually array: [{ generated_text: "..." }]
+      if (Array.isArray(response.data) && response.data[0]?.generated_text) {
+        return response.data[0].generated_text;
       }
-    }
-
-    if (bestPos === -1) {
-      return content.slice(0, maxChars) + (content.length > maxChars ? '…' : '');
-    }
-
-    const start = Math.max(0, bestPos - Math.floor(maxChars / 4));
-    let snippet = content.slice(start, start + maxChars);
-    if (start > 0) snippet = '…' + snippet;
-    if (start + maxChars < content.length) snippet = snippet + '…';
-    return snippet;
-  }
-
-  generateAnswer(query, retrieved) {
-    if (!retrieved || retrieved.length === 0) {
-      return {
-        text: "I couldn't find relevant information in the knowledge base. Please try rephrasing or consult the official sources.",
-        snippet: null,
-      };
-    }
-
-    const top = retrieved[0].document;
-    const snippet = this.extractSnippet(query, top);
-
-    let text = `**${top.title}**\n\n${snippet}`;
-
-    if (retrieved.length > 1) {
-      text += `\n\n**Related:**`;
-      for (let i = 1; i < Math.min(retrieved.length, 5); i++) {
-        const d = retrieved[i].document;
-        text += `\n• ${d.title}${d.category ? ` — ${d.category}` : ''}`;
+      // Some models return just object
+      if (response.data?.generated_text) {
+        return response.data.generated_text;
       }
+      return null;
+    } catch (error) {
+      console.error('❌ Hugging Face API Error:', error.response?.data || error.message);
+      return null;
     }
-
-    text += `\n\n*Source: ${top.id} — for full details view the official site.*`;
-
-    return { text, snippet };
   }
 
   async query(userQuery, opts = {}) {
     try {
       if (!userQuery || String(userQuery).trim().length === 0) {
-        return { answer: "Please provide a question or search terms.", sources: [], confidence: 'low' };
+        return { answer: "Please provide a question.", sources: [], confidence: 'low' };
       }
 
+      // 1. Retrieve relevant context
       const topK = opts.topK ?? this.options.topK;
       const results = await this.searchDocuments(userQuery, topK);
 
       console.log(`\n🔍 Query: "${userQuery}"`);
       console.log(`📚 Found ${results.length} candidate documents`);
-      results.forEach((r, i) => {
-        console.log(`  ${i + 1}. ${r.document.title} (${Math.round(r.similarity * 100)}%)`);
-      });
 
-      if (results.length === 0 || results[0].similarity < this.options.minSimilarity) {
-        return {
-          answer: "I couldn't find relevant information to answer your question. Try rephrasing or consult the official sources.",
-          sources: [],
-          confidence: 'low',
-        };
+      let contextText = "";
+      if (results.length > 0 && results[0].similarity >= this.options.minSimilarity) {
+        contextText = results.map(r =>
+          `Title: ${r.document.title}\nContent: ${r.document.content}`
+        ).join('\n\n');
       }
 
-      const generated = this.generateAnswer(userQuery, results);
+      // 2. Construct Prompt
+      // If we found context, use it. If not, the model relies on its own knowledge or admits ignorance.
+      let prompt;
+      if (contextText) {
+        prompt = `Answer the question based strictly on the following context.\n\nContext:\n${contextText}\n\nQuestion: ${userQuery}\n\nAnswer:`;
+      } else {
+        // Fallback or general chat if no docs found
+        prompt = `Question: ${userQuery}\n\nAnswer:`;
+      }
 
-      // IMPORTANT: return numeric relevance (0..100) to match Mongoose number fields
+      // 3. Generate Answer via HF
+      let answer = await this.queryHuggingFace(prompt);
+
+      // Fallback if API fails or token missing
+      if (!answer) {
+        answer = contextText
+          ? "I found some relevant information but couldn't generate a summary at the moment. Please check the sources below."
+          : "I couldn't find relevant information in the knowledge base and the AI service is currently unavailable.";
+      }
+
       return {
-        answer: generated.text,
-        snippet: generated.snippet,
+        answer: answer,
         sources: results.map(r => ({
           id: r.document.id,
           title: r.document.title,
-          relevance: Math.round(r.similarity * 100), // numeric
+          relevance: Math.round(r.similarity * 100),
           category: r.document.category || null,
         })),
-        confidence: results[0].similarity >= this.options.highConfidenceThreshold ? 'high' : 'medium',
+        confidence: (results.length > 0 && results[0].similarity > 0.4) ? 'high' : 'medium',
       };
+
     } catch (err) {
       console.error('❌ RAG query error:', err.message || err);
-      return { answer: 'An internal error occurred while processing your query.', sources: [], confidence: 'low' };
+      return { answer: 'An internal error occurred.', sources: [], confidence: 'low' };
     }
   }
 
@@ -224,6 +214,13 @@ class RAGService {
     console.log('🚀 Initializing RAG Service...');
     await this.loadKnowledgeBase();
     if (this.options.watchFile) this.watchKnowledgeBase();
+
+    if (!process.env.HF_API_TOKEN) {
+      console.warn('⚠️  WARNING: HF_API_TOKEN is missing in .env file! AI generation will not work.');
+    } else {
+      console.log('🔑 HF_API_TOKEN detected.');
+    }
+
     console.log('✅ RAG Service ready!\n');
   }
 

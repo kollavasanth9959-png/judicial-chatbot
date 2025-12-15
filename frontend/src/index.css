@@ -2,10 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-/* small custom helpers */
-.input {
-  @apply w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white;
+@layer utilities {
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
 }
+
+/* Custom Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+
+/* Component Styles */
+.input {
+  @apply w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm bg-slate-50 focus:bg-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all duration-200 outline-none;
+}
+
 .btn-primary {
-  @apply bg-sky-600 hover:bg-sky-700 text-white rounded-md px-4 py-2 text-sm;
+  @apply bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white font-medium rounded-lg px-5 py-2.5 text-sm shadow-md hover:shadow-lg transform active:scale-95 transition-all duration-200 flex items-center justify-center gap-2;
 }
