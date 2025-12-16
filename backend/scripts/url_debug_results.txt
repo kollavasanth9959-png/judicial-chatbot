@@ -1,0 +1,9 @@
+--- Testing Qwen Model ---
+
+Testing POST https://router.huggingface.co/v1/chat/completions...
+❌ FAILED: Request failed with status code 401 401
+Error Data: {"error":"Invalid username or password."}
+
+Testing POST https://api-inference.huggingface.co/models/Qwen/Qwen2.5-7B-Instruct...
+❌ FAILED: Request failed with status code 410 410
+Error Data: {"error":"https://api-inference.huggingface.co is no longer supported. Please use https://router.huggingface.co instead."}

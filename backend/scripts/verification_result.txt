@@ -1,0 +1,8 @@
+Starting verification...
+Testing Hugging Face API connection...
+Using Model URL: https://router.huggingface.co/models/google/flan-t5-large
+❌ FAILURE: No response received (check token or quota?)
+--- DUMPING ENV KEYS ---
+HF Keys found: HF_API_TOKEN, HF_MODEL_URL
+HF_API_TOKEN present: YES
+HF_API_TOKEN length: 26

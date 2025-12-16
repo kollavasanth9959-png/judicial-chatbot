@@ -75,8 +75,8 @@ exports.sendMessage = async (req, res) => {
         sources: ragResponse.sources,
         confidence: ragResponse.confidence,
         chatId: chat._id,
-        remainingQueries: req.user.queryLimit === -1 
-          ? 'unlimited' 
+        remainingQueries: req.user.queryLimit === -1
+          ? 'unlimited'
           : req.user.queryLimit - req.user.queryCount
       }
     });

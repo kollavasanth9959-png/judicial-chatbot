@@ -20,6 +20,7 @@ app.use(morgan('dev'));
 app.use('/api/auth', require('./src/routes/authRoutes'));
 app.use('/api/chat', require('./src/routes/chatRoutes'));
 app.use('/api/users', require('./src/routes/userRoutes'));
+app.use('/api', require('./src/routes/audioRoutes'));
 
 // Health check
 app.get('/health', (req, res) => {
@@ -64,11 +65,11 @@ async function startServer() {
     // Connect to MongoDB
     console.log('🔌 Connecting to MongoDB...');
     await connectDB();
-    
+
     // Initialize RAG system (this takes a minute)
     console.log('🤖 Initializing AI RAG System...');
     await ragService.initialize();
-    
+
     // Start Express server
     app.listen(PORT, () => {
       console.log('\n' + '='.repeat(50));
@@ -81,7 +82,7 @@ async function startServer() {
       console.log(`📚 Knowledge Base: ${ragService.knowledgeBase.length} documents`);
       console.log('='.repeat(50) + '\n');
     });
-    
+
   } catch (error) {
     console.error('❌ Failed to start server:', error);
     process.exit(1);

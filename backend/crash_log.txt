@@ -1,0 +1,89 @@
+node : node:internal/
+modules/cjs/loader:12
+52
+At line:1 char:1
++ node server.js 
+2>&1 | Out-File 
+-Encoding ascii 
+crash_log.txt
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (node:in   
+ ternal/modules/c    
+js/loader:1252:S    
+tring) [], Remot    
+eException
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+  throw err;
+  ^
+
+Error: Cannot find 
+module 
+'../middleware/auth'
+Require stack:
+- C:\Users\91901\OneD
+rive\Desktop\new\back
+end\src\routes\audioR
+outes.js
+- C:\Users\91901\OneD
+rive\Desktop\new\back
+end\server.js
+    at Function._reso
+lveFilename (node:int
+ernal/modules/cjs/loa
+der:1249:15)
+    at 
+Function._load (node:
+internal/modules/cjs/
+loader:1075:27)
+    at TracingChannel
+.traceSync (node:diag
+nostics_channel:315:1
+4)
+    at 
+wrapModuleLoad (node:
+internal/modules/cjs/
+loader:218:24)
+    at 
+Module.require (node:
+internal/modules/cjs/
+loader:1340:12)
+    at require (node:
+internal/modules/help
+ers:141:16)
+    at 
+Object.<anonymous> (C
+:\Users\91901\OneDriv
+e\Desktop\new\backend
+\src\routes\audioRout
+es.js:4:14)
+    at 
+Module._compile (node
+:internal/modules/cjs
+/loader:1546:14)
+    at Object..js (no
+de:internal/modules/c
+js/loader:1689:10)
+    at Module.load (n
+ode:internal/modules/
+cjs/loader:1318:32) {
+  code: 
+'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\91901
+\\OneDrive\\Desktop\\
+new\\backend\\src\\ro
+utes\\audioRoutes.js'
+,
+    'C:\\Users\\91901
+\\OneDrive\\Desktop\\
+new\\backend\\server.
+js'
+  ]
+}
+
+Node.js v22.11.0
