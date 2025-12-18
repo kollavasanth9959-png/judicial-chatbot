@@ -79,7 +79,7 @@ async function startServer() {
       console.log(`🌍 URL: http://localhost:${PORT}`);
       console.log(`💾 Database: Connected`);
       console.log(`🤖 RAG System: Ready`);
-      console.log(`📚 Knowledge Base: ${ragService.knowledgeBase.length} documents`);
+      // console.log(`📚 Knowledge Base: ${ragService.knowledgeBase.length} documents`);
       console.log('='.repeat(50) + '\n');
     });
 
